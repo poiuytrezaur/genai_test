@@ -156,4 +156,3 @@ def test_get_weather_missing_temperature(mock_get):
     # Should still return data with None for temperature
     assert weather is not None
     assert weather["temperature"] is None
-
