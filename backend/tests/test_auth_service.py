@@ -3,7 +3,7 @@
 import pytest
 
 from backend.app import create_app
-from backend.models.user import db
+from backend.database import db
 from backend.services import AuthService
 
 

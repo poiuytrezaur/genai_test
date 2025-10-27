@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 
-db = SQLAlchemy()
+from backend.database import db
 
 
 class User(db.Model):

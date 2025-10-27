@@ -13,7 +13,7 @@ exclude = [
 ]
 
 # Python version
-target-version = "py39"
+target-version = "py312"
 
 # Line length
 line-length = 88

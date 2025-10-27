@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import logging
 
-from backend.models.user import User, db
+from backend.database import db
+from backend.models.user import User
 
 logger = logging.getLogger(__name__)
 

@@ -12,7 +12,7 @@ A production-ready weather application with user management and real-time weathe
 - ✅ **Code Quality**: Ruff linting with all rules enabled
 - 🧪 **Comprehensive Tests**: Unit tests with pytest and coverage reporting
 - 🚀 **CI/CD Pipeline**: GitHub Actions for automated testing and building
-- 📦 **Distribution Ready**: Proper setup.py for packaging and distribution
+- 📦 **Distribution Ready**: Modern pyproject.toml for packaging and distribution
 
 ## Project Structure
 
@@ -24,6 +24,7 @@ weather-app/
 │   ├── routes/          # API endpoints
 │   ├── services/        # Business logic
 │   ├── tests/           # Unit tests
+│   ├── database.py      # Database initialization
 │   └── app.py           # Main application
 ├── frontend/
 │   ├── static/
@@ -32,8 +33,7 @@ weather-app/
 │   └── templates/      # HTML templates
 ├── .github/
 │   └── workflows/      # CI/CD configurations
-├── requirements.txt    # Python dependencies
-├── setup.py           # Package configuration
+├── pyproject.toml      # Project configuration and dependencies
 └── ruff.toml          # Linting configuration
 ```
 
@@ -60,7 +60,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
 4. (Optional) Install development dependencies:
@@ -236,7 +236,7 @@ python backend/app.py
 
 Ensure all dependencies are installed:
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
 ## Acknowledgments

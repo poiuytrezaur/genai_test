@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 
 # Constants for validation
-MIN_USERNAME_LENGTH = 3
-MAX_USERNAME_LENGTH = 80
+MIN_USERNAME_LENGTH = 5
+MAX_USERNAME_LENGTH = 25
 MIN_PASSWORD_LENGTH = 6
 
 
@@ -49,7 +49,7 @@ def register() -> tuple[Any, int]:  # noqa: PLR0911
         # Validate input lengths
         if len(username) < MIN_USERNAME_LENGTH or len(username) > MAX_USERNAME_LENGTH:
             return (
-                jsonify({"error": "Username must be 3-80 characters"}),
+                jsonify({"error": "Username must be 5-25 characters"}),
                 400,
             )
 

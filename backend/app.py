@@ -8,7 +8,7 @@ import os
 from flask import Flask, render_template
 
 from backend.config import Config
-from backend.models.user import db
+from backend.database import db
 from backend.routes import auth_bp, weather_bp
 
 # Configure logging
@@ -84,10 +84,11 @@ def main() -> None:
     """Run the Flask application."""
     app = create_app()
     port = int(os.environ.get("PORT", "5000"))
+    host = os.environ.get("HOST", "127.0.0.1")
     debug = os.environ.get("FLASK_DEBUG", "False").lower() == "true"
 
-    logger.info("Starting Flask application on port %d", port)
-    app.run(host="0.0.0.0", port=port, debug=debug)  # noqa: S104
+    logger.info("Starting Flask application on %s:%d", host, port)
+    app.run(host=host, port=port, debug=debug)
 
 
 if __name__ == "__main__":
