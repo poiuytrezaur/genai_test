@@ -1,0 +1,56 @@
+# Ruff configuration for Weather App
+# All rules enabled as requested
+
+# Exclude common directories
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+]
+
+# Python version
+target-version = "py39"
+
+# Line length
+line-length = 88
+
+[lint]
+# Enable ALL rules
+select = ["ALL"]
+
+# Ignore specific rules that conflict or are not suitable
+ignore = [
+    "D100",    # Missing docstring in public module (we have some)
+    "D104",    # Missing docstring in public package (we have __init__.py with minimal content)
+    "ANN101",  # Missing type annotation for self
+    "ANN102",  # Missing type annotation for cls
+    "COM812",  # Trailing comma missing (conflicts with formatter)
+    "ISC001",  # Implicit string concatenation (conflicts with formatter)
+]
+
+[lint.per-file-ignores]
+# Test files can have additional relaxed rules
+"backend/tests/*" = ["S101", "PLR2004", "ANN", "D"]
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.isort]
+known-first-party = ["backend", "frontend"]
+
+[format]
+# Use double quotes for strings
+quote-style = "double"
+
+# Indent with spaces
+indent-style = "space"
+
+# Respect magic trailing comma
+skip-magic-trailing-comma = false
+
+# Auto-detect line ending
+line-ending = "auto"
