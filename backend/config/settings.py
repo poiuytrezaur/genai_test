@@ -1,6 +1,7 @@
 """Application configuration settings."""
 
 import os
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -9,7 +10,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 class Config:
     """Application configuration class."""
 
-    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
+    # Security: Require SECRET_KEY in production
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    if not SECRET_KEY:
+        if os.environ.get("FLASK_ENV") == "production":
+            print("ERROR: SECRET_KEY must be set in production", file=sys.stderr)
+            sys.exit(1)
+        # Only use default in development
+        SECRET_KEY = "dev-secret-key-change-in-production"
+
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL", f"sqlite:///{BASE_DIR / 'weather_app.db'}"
     )
