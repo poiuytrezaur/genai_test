@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather - Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather App</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/weather">Weather</a>
+                <span id="userInfo"></span>
+                <button id="logoutBtn" class="btn btn-small" style="display: none;">Logout</button>
+            </nav>
+        </header>
+
+        <main>
+            <div class="weather-container">
+                <h2>Current Weather</h2>
+                <div id="message" class="message"></div>
+                
+                <div class="location-input">
+                    <div class="form-group">
+                        <label for="latitude">Latitude:</label>
+                        <input type="number" id="latitude" step="any" placeholder="e.g., 40.7128" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude:</label>
+                        <input type="number" id="longitude" step="any" placeholder="e.g., -74.0060" required>
+                    </div>
+                    <button id="getWeatherBtn" class="btn btn-primary">Get Weather</button>
+                    <button id="getCurrentLocationBtn" class="btn btn-secondary">Use Current Location</button>
+                </div>
+
+                <div id="weatherDisplay" class="weather-display" style="display: none;">
+                    <div class="weather-card">
+                        <h3 id="weatherLocation"></h3>
+                        <div class="weather-main">
+                            <div class="temperature">
+                                <span id="temperature"></span>°C
+                            </div>
+                            <div class="weather-description" id="weatherDescription"></div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="detail">
+                                <span class="label">Wind Speed:</span>
+                                <span id="windSpeed"></span> km/h
+                            </div>
+                            <div class="detail">
+                                <span class="label">Wind Direction:</span>
+                                <span id="windDirection"></span>°
+                            </div>
+                            <div class="detail">
+                                <span class="label">Updated:</span>
+                                <span id="weatherTime"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popular-locations">
+                    <h3>Popular Locations</h3>
+                    <div class="location-buttons">
+                        <button class="btn btn-location" data-lat="40.7128" data-lon="-74.0060">New York</button>
+                        <button class="btn btn-location" data-lat="51.5074" data-lon="-0.1278">London</button>
+                        <button class="btn btn-location" data-lat="48.8566" data-lon="2.3522">Paris</button>
+                        <button class="btn btn-location" data-lat="35.6762" data-lon="139.6503">Tokyo</button>
+                        <button class="btn btn-location" data-lat="-33.8688" data-lon="151.2093">Sydney</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Weather App. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/weather.js') }}"></script>
+</body>
+</html>

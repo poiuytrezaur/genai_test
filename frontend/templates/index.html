@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather App</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/weather">Weather</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="hero">
+                <h2>Welcome to Weather App</h2>
+                <p>Get real-time weather information for any location worldwide.</p>
+                <div class="cta-buttons">
+                    <a href="/register" class="btn btn-primary">Get Started</a>
+                    <a href="/login" class="btn btn-secondary">Login</a>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>🌡️ Real-Time Weather</h3>
+                    <p>Get current temperature and weather conditions</p>
+                </div>
+                <div class="feature">
+                    <h3>🌍 Global Coverage</h3>
+                    <p>Weather data for any location worldwide</p>
+                </div>
+                <div class="feature">
+                    <h3>🔒 Secure Access</h3>
+                    <p>User authentication and data protection</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Weather App. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

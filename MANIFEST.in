@@ -1,0 +1,7 @@
+# Weather App - Manifest for package data
+include README.md
+include LICENSE
+include requirements.txt
+include ruff.toml
+recursive-include frontend/templates *.html
+recursive-include frontend/static *.css *.js
