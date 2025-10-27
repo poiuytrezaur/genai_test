@@ -8,8 +8,7 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-# Now import and run the app
-from backend.app import main
+from backend.app import main  # noqa: E402
 
 if __name__ == "__main__":
     main()

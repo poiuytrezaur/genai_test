@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -19,7 +19,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(
-        db.DateTime, default=lambda: datetime.now(timezone.utc), nullable=False
+        db.DateTime, default=lambda: datetime.now(UTC), nullable=False
     )
     last_login = db.Column(db.DateTime, nullable=True)
 
@@ -44,7 +44,7 @@ class User(db.Model):
 
     def update_last_login(self) -> None:
         """Update the last login timestamp to current time."""
-        self.last_login = datetime.now(timezone.utc)
+        self.last_login = datetime.now(UTC)
 
     def to_dict(self) -> dict:
         """Convert user object to dictionary.

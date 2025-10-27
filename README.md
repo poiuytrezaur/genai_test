@@ -2,6 +2,79 @@
 
 A production-ready weather application with user management and real-time weather data.
 
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         Weather App                              │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                          Frontend Layer                          │
+├─────────────────────────────────────────────────────────────────┤
+│  HTML Templates          │  Static Assets                        │
+│  • index.html            │  • CSS (style.css)                   │
+│  • login.html            │  • JavaScript                        │
+│  • register.html         │    - login.js                        │
+│  • weather.html          │    - register.js                     │
+│                          │    - weather.js                      │
+└──────────────────┬──────────────────────────────────────────────┘
+                   │ HTTP/HTTPS
+                   │
+┌──────────────────▼──────────────────────────────────────────────┐
+│                       Flask Application                          │
+├─────────────────────────────────────────────────────────────────┤
+│  Routes Layer            │  Business Logic Layer                │
+│  • auth_routes.py        │  • auth_service.py                   │
+│    - /api/auth/register  │    - register_user()                 │
+│    - /api/auth/login     │    - authenticate_user()             │
+│    - /api/auth/logout    │    - get_user_by_id()                │
+│    - /api/auth/me        │                                      │
+│  • weather_routes.py     │  • weather_service.py                │
+│    - /api/weather/current│    - get_weather()                   │
+│                          │    - get_weather_description()       │
+└──────────────────┬──────┴──────────────────┬───────────────────┘
+                   │                          │
+                   │                          │ HTTP
+                   │                          │
+┌──────────────────▼──────────────────────┐  │
+│         Data Layer                      │  │
+├─────────────────────────────────────────┤  │
+│  database.py (SQLAlchemy)               │  │
+│  • db initialization                    │  │
+│                                         │  │
+│  models/                                │  │
+│  • user.py                              │  │
+│    - User model                         │  │
+│    - Password hashing                   │  │
+│    - Authentication                     │  │
+└──────────────────┬──────────────────────┘  │
+                   │                          │
+                   │                          │
+┌──────────────────▼──────────────────────┐  │
+│       SQLite Database                   │  │
+│       (weather_app.db)                  │  │
+│  • users table                          │  │
+└─────────────────────────────────────────┘  │
+                                              │
+                                              │
+                                    ┌─────────▼────────────┐
+                                    │  Open-Meteo API      │
+                                    │  (External Service)  │
+                                    │  • Weather data      │
+                                    └──────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                      Configuration Layer                         │
+├─────────────────────────────────────────────────────────────────┤
+│  config/settings.py                                              │
+│  • SECRET_KEY management                                         │
+│  • Database URI                                                  │
+│  • Weather API URL                                               │
+│  • Session configuration                                         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 ## Features
 
 - 🌡️ **Real-time Weather Data**: Get current weather information using Open-Meteo API (no API key required)
@@ -41,7 +114,7 @@ weather-app/
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12 or higher
 - pip
 
 ### Setup

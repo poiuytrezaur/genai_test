@@ -2,6 +2,8 @@
 
 from unittest.mock import Mock, patch
 
+import requests
+
 from backend.services import WeatherService
 
 
@@ -33,8 +35,6 @@ def test_get_weather_success(mock_get):
 @patch("backend.services.weather_service.requests.get")
 def test_get_weather_api_error(mock_get):
     """Test weather fetch with API error."""
-    import requests
-
     mock_get.side_effect = requests.exceptions.RequestException("API error")
 
     weather = WeatherService.get_weather(40.7128, -74.0060)

@@ -88,7 +88,7 @@ class AuthService:
             User: User object or None if not found
         """
         try:
-            return User.query.get(user_id)
+            return db.session.get(User, user_id)
         except Exception:
             logger.exception("Error fetching user by ID")
             return None
