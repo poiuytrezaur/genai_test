@@ -43,12 +43,12 @@ class AuthService:
             db.session.commit()
 
             logger.info("New user registered: %s", username)
-            return user
-
         except Exception:
             db.session.rollback()
             logger.exception("Error registering user")
             return None
+        else:
+            return user
 
     @staticmethod
     def authenticate_user(username: str, password: str) -> User | None:
@@ -68,14 +68,14 @@ class AuthService:
                 user.update_last_login()
                 db.session.commit()
                 logger.info("User authenticated: %s", username)
-                return user
-
-            logger.warning("Authentication failed for user: %s", username)
-            return None
-
+            else:
+                logger.warning("Authentication failed for user: %s", username)
+                return None
         except Exception:
             logger.exception("Error authenticating user")
             return None
+        else:
+            return user
 
     @staticmethod
     def get_user_by_id(user_id: int) -> User | None:
